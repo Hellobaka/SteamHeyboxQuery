@@ -62,9 +62,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
                 StringBuilder sb = new StringBuilder();
                 var list = searchResult.Data as List<SearchResult.Item>;
                 sb.AppendLine($"共有{list.Count}个结果");
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < Math.Min(10, list.Count); i++)
                 {
-                    sb.AppendLine($"{list[i].info.name} - {list[i].info.steam_appid}");
+                    sb.AppendLine($"{i+1}. {list[i].info.name} - {list[i].info.steam_appid}");
                 }
                 sendText.MsgToSend.Add(sb.ToString());
             }
