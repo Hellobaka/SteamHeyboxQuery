@@ -17,7 +17,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
         
         public string GetOrderStr() => "#steam查询";
 
-        public bool Judge(string destStr) => destStr.Replace("＃", "#").StartsWith(GetOrderStr());//这里判断是否能触发指令
+        public bool Judge(string destStr) => destStr.ToLower().Replace("＃", "#").StartsWith(GetOrderStr());//这里判断是否能触发指令
 
         public FunctionResult Progress(CQGroupMessageEventArgs e)//群聊处理
         {
@@ -30,7 +30,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             {
                 SendID = e.FromGroup,
             };
-            string targetName = e.Message.Text.Replace(GetOrderStr(), "").Trim();
+            string targetName = e.Message.Text.ToLower().Replace(GetOrderStr(), "").Trim();
             if (CommonHelper.SteamIdCache.ContainsKey(targetName))
             {
                 sendText = CallGameInfo(CommonHelper.SteamIdCache[targetName], sendText);
@@ -54,7 +54,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             {
                 SendID = e.FromQQ,
             };
-            string targetName = e.Message.Text.Replace(GetOrderStr(), "").Trim();
+            string targetName = e.Message.Text.ToLower().Replace(GetOrderStr(), "").Trim();
             if (CommonHelper.SteamIdCache.ContainsKey(targetName))
             {
                 sendText = CallGameInfo(CommonHelper.SteamIdCache[targetName], sendText);

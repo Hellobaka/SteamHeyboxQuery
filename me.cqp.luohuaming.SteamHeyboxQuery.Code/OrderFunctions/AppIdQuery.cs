@@ -17,7 +17,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
         
         public string GetOrderStr() => "#steamid查询";
 
-        public bool Judge(string destStr) => destStr.Replace("＃", "#").StartsWith(GetOrderStr());//这里判断是否能触发指令
+        public bool Judge(string destStr) => destStr.ToLower().Replace("＃", "#").StartsWith(GetOrderStr());//这里判断是否能触发指令
 
         public FunctionResult Progress(CQGroupMessageEventArgs e)//群聊处理
         {
@@ -30,7 +30,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             {
                 SendID = e.FromGroup,
             };
-            int appId = Convert.ToInt32(e.Message.Text.Replace(GetOrderStr(), "").Trim());
+            int appId = Convert.ToInt32(e.Message.Text.ToLower().Replace(GetOrderStr(), "").Trim());
             sendText = CallIdQuery(appId, sendText);
             
             result.SendObject.Add(sendText);
@@ -48,7 +48,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             {
                 SendID = e.FromQQ,
             };
-            int appId = Convert.ToInt32(e.Message.Text.Replace(GetOrderStr(), "").Trim());
+            int appId = Convert.ToInt32(e.Message.Text.ToLower().Replace(GetOrderStr(), "").Trim());
             sendText = CallIdQuery(appId, sendText);
             result.SendObject.Add(sendText);
             return result;
