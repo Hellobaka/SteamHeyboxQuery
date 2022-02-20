@@ -306,9 +306,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                 {
                     string priceStr = "国区史低: {lowest_price} 最低价: {lowest_area_price}\n当前价格: {now_price} 小黑盒价格: {heybox_price}";
                     priceStr = priceStr.Replace("{now_price}", $"￥{price?.current}{(price?.discount == 0 ? " " : $" -{price?.discount}%")}");
-                    priceStr = priceStr.Replace("{lowest_price}", $"￥{price?.lowest_price}");
+                    priceStr = priceStr.Replace("{lowest_price}", $"￥{(price?.lowest_price == 0 ? price?.current : price?.lowest_price.ToString())}");
                     priceStr = priceStr.Replace("{lowest_area_price}", $"{minimum_price?.name} {minimum_price?.value}");
-                    priceStr = priceStr.Replace("{heybox_price}", $"￥{heybox_price?.discount}");
+                    priceStr = priceStr.Replace("{heybox_price}", $"￥{heybox_price?.cost_coin/1000}");
                     sb.AppendLine(priceStr);
                 }
                 return sb.ToString();
