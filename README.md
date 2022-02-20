@@ -1,16 +1,9 @@
-# BotDevelopmentFramework
+# SteamHeyBoxQuery
 
 ## 介绍
-CQ机器人开发白框架
+借用[小黑盒](https://www.xiaoheihe.cn/home)公开接口查询`Steam`游戏信息
 
-## 使用流程
-1. Clone项目
-2. 使用`VSCode`打开项目目录
-3. 全局替换文本 `me.cqp.luohuaming.SteamHeyboxQuery.` 到 `me.cqp.luohuaming.需要的插件英文.`
-4. 全局替换文本 `SteamHeyboxQuery.` 到 `需要的插件英文.`
-5. 重命名文件夹 `me.cqp.luohuaming.SteamHeyboxQuery.Core` `me.cqp.luohuaming.SteamHeyboxQuery.Sdk` `me.cqp.luohuaming.SteamHeyboxQuery.Tool` 的 `me.cqp.luohuaming.SteamHeyboxQuery.` 到 `me.cqp.luohuaming.需要的插件英文`
-6. 进入这些文件夹, 对其中的 `me.cqp.luohuaming.SteamHeyboxQuery.Core.csporj`等文件 的 `me.cqp.luohuaming.SteamHeyboxQuery.` 进行同理替换
-7. 重命名`me.cqp.luohuaming.SteamHeyboxQuery.PublicInfo`的程序集名称
-8. 对Core项目的属性-程序集名称进行替换
-7. 使用`VS2019`打开项目
-8. 所有项目的引用重新引用一遍
+## 指令列表
+- #steam查询+名称: 搜索此关键字并获取第一个游戏信息
+- #steam列表查询+名称: 获取前10个搜索结果并返回SteamId供详细选择
+- #staemid查询+steamid: 通过SteamId获取游戏信息
