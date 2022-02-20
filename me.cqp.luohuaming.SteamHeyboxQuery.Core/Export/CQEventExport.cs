@@ -50,7 +50,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.App.Export
 		[DllExport (ExportName = "AppInfo", CallingConvention = CallingConvention.StdCall)]	
 		private static string AppInfo ()	
 		{	
-			return "9,me.cqp.luohuaming.PLUGINNAME";	
+			return "9,me.cqp.luohuaming.SteamHeyboxQuery";	
 		}	
 		
 		/// <summary>	
@@ -64,12 +64,12 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.App.Export
 			// 反射获取 AppData 实例	
 			Type appDataType = typeof (AppData);	
 			// 注册一个 CQApi 实例	
-			AppInfo appInfo = new AppInfo ("me.cqp.luohuaming.PLUGINNAME", 1, 9, "Steam价格查询", "1.0.0", 1, "落花茗", "使用小黑盒公开API查询游戏价格", authCode);	
+			AppInfo appInfo = new AppInfo ("me.cqp.luohuaming.SteamHeyboxQuery", 1, 9, "Steam价格查询", "1.0.0", 1, "落花茗", "使用小黑盒公开API查询游戏价格", authCode);	
 			appDataType.GetRuntimeProperty ("CQApi").GetSetMethod (true).Invoke (null, new object[] { new CQApi (appInfo) });	
-			AppData.UnityContainer.RegisterInstance<CQApi> ("me.cqp.luohuaming.PLUGINNAME", AppData.CQApi);	
+			AppData.UnityContainer.RegisterInstance<CQApi> ("me.cqp.luohuaming.SteamHeyboxQuery", AppData.CQApi);	
 			// 向容器注册一个 CQLog 实例	
 			appDataType.GetRuntimeProperty ("CQLog").GetSetMethod (true).Invoke (null, new object[] { new CQLog (authCode) });	
-			AppData.UnityContainer.RegisterInstance<CQLog> ("me.cqp.luohuaming.PLUGINNAME", AppData.CQLog);	
+			AppData.UnityContainer.RegisterInstance<CQLog> ("me.cqp.luohuaming.SteamHeyboxQuery", AppData.CQLog);	
 			// 注册插件全局异常捕获回调, 用于捕获未处理的异常, 回弹给 酷Q 做处理	
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;	
 			// 本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type=1001）。	
