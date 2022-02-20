@@ -246,7 +246,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
             public TopicDetail topic_detail { get; set; }
             public string type { get; set; }
             public string positive_desc { get; set; }
-            public IList<Publisher> publishers { get; set; }
+            public IList<object> publishers { get; set; }
             public string platf { get; set; }
             public MinimumPrice minimum_price { get; set; }
             public Price price { get; set; }
@@ -274,30 +274,44 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine($"名称: {name}");
                 sb.AppendLine($"{menu_v2[0].title}{menu_v2[0].value}");
-                sb.AppendLine($"{menu_v2[1].title}{menu_v2[1].value}");
-                sb.AppendLine($"tag: {string.Join(" ",hot_tags.Select(x=>x.desc).ToList())}");
-                string commonStr = "Steam好评率: {steam_rate} 小黑盒评分: {heybox_rate}\n当前在线: {online_count} 月活用户: {monthly_count} 平均时长: {avg_time}";
-                foreach (var item in user_num.game_data)
+                if (publishers[0] is string)
                 {
-                    if (item.desc == "Steam好评率")
-                    {
-                        commonStr = commonStr.Replace("{steam_rate}", item.value);
-                    }
-                    else if(item.desc == "当前在线")
-                    {
-                        commonStr = commonStr.Replace("{online_count}", item.value);
-                    }
-                    else if(item.desc == "本月平均在线")
-                    {
-                        commonStr = commonStr.Replace("{monthly_count}", item.value);
-                    }
-                    else if(item.desc == "平均游戏时间")
-                    {
-                        commonStr = commonStr.Replace("{avg_time}", item.value);
-                    }
+                    sb.AppendLine($"开发商：{publishers[0]}");
                 }
-                commonStr = commonStr.Replace("{heybox_rate}", score);
-
+                else
+                {
+                    sb.AppendLine($"{menu_v2[1].title}{menu_v2[1].value}");
+                }
+                sb.AppendLine($"tag: {string.Join(" ",hot_tags.Select(x=>x.desc).ToList())}");
+                if (user_num != null)
+                {
+                    string commonStr = "Steam好评率: {steam_rate} 小黑盒评分: {heybox_rate}\n当前在线: {online_count} 月活用户: {monthly_count} 平均时长: {avg_time}";
+                    foreach (var item in user_num.game_data)
+                    {
+                        if (item.desc == "Steam好评率")
+                        {
+                            commonStr = commonStr.Replace("{steam_rate}", item.value);
+                        }
+                        else if (item.desc == "当前在线")
+                        {
+                            commonStr = commonStr.Replace("{online_count}", item.value);
+                        }
+                        else if (item.desc == "本月平均在线")
+                        {
+                            commonStr = commonStr.Replace("{monthly_count}", item.value);
+                        }
+                        else if (item.desc == "平均游戏时间")
+                        {
+                            commonStr = commonStr.Replace("{avg_time}", item.value);
+                        }
+                    }
+                    commonStr = commonStr.Replace("{heybox_rate}", score);
+                    sb.AppendLine(commonStr);
+                }
+                else
+                {
+                    sb.AppendLine($"小黑盒评分: {score} 平台: {platf}");
+                }
                 if (is_free)
                 {
                     sb.AppendLine($"价格: 免费");

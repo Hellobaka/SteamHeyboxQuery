@@ -64,7 +64,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
                 sb.AppendLine($"共有{list.Count}个结果");
                 for (int i = 0; i < Math.Min(10, list.Count); i++)
                 {
-                    sb.AppendLine($"{i+1}. {list[i].info.name} - {list[i].info.steam_appid}");
+                    sb.AppendLine($"{i+1}. {list[i].info.name}({list[i].info.platforms[0]}) - {list[i].info.steam_appid}");
                 }
                 sendText.MsgToSend.Add(sb.ToString());
             }

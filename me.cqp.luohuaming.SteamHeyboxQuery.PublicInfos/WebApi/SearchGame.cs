@@ -1,5 +1,6 @@
 using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi
 {
@@ -22,10 +23,11 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi
         {
             var result = GetGameInfoFullJson();
             ApiResult apiResult = new ApiResult();
-            if (result.result.items.Count > 0)
+            var ls = result.result.items.Where(x => x.info.game_type != "mobile").ToList();
+            if (ls.Count > 0)
             {
                 apiResult.IsSuccess = true;
-                apiResult.Data = result.result.items;
+                apiResult.Data = ls;
             }
             else
             {
