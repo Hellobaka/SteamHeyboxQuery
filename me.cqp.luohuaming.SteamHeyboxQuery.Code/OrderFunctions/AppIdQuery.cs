@@ -60,22 +60,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             if (gameInfoResult.IsSuccess)
             {
                 var data = gameInfoResult.Data as GameInfo.Result;
-                sendText.MsgToSend.Add(data.ToString());
-                if (string.IsNullOrWhiteSpace(data.image) is false)
-                {
-                    string folderPath = Path.Combine(MainSave.ImageDirectory, "SteamHeyboxQuery");
-                    Directory.CreateDirectory(folderPath);
-                    string filename = $"{data.steam_appid}.jpg";
-                    if (File.Exists(Path.Combine(folderPath, filename)) is false)
-                    {
-                        using (var http = new System.Net.WebClient())
-                        {
-                            http.DownloadFile(data.image, Path.Combine(folderPath, filename));
-                        }
-                    }
-                    sendText.MsgToSend.Add($"[CQ:image,file=SteamHeyboxQuery\\{filename}]");
-                }
-
+                string filename = DateTime.Now.ToString("yyyyMMddHHmmss") + ".png";
+                data.DrawSteamImg().Save(Path.Combine(MainSave.ImageDirectory, "SteamHeyboxQuery", filename));
+                sendText.MsgToSend.Add($"[CQ:image,file=SteamHeyboxQuery\\{filename}]");
             }
             else
             {
