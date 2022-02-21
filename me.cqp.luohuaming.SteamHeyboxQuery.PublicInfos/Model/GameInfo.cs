@@ -334,24 +334,24 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                 #region 数据初始化
 
                 string name = this.name,
-                    releaseDate = "-", //
-                    publisher = "-",//
+                    releaseDate = "--", //
+                    publisher = "--",//
                     steam = "0%",
                     heybox = score,
-                    online = "-",
+                    online = "--",
                     onlineRank = "",
-                    month = "-",
+                    month = "--",
                     monthRank = "",
-                    avg = "-",
+                    avg = "--",
                     avgRank = "",
-                    lowest = "-",
-                    lowestArea = "-",
-                    lowestAreaPrice = "-",
-                    nowPrice = "-",
+                    lowest = "--",
+                    lowestArea = "--",
+                    lowestAreaPrice = "--",
+                    nowPrice = "--",
                     discount = "",
-                    heyboxPlayer = "-",
+                    heyboxPlayer = "--",
                     heyboxPlayerRank = "",
-                    heyboxPrice = "-";
+                    heyboxPrice = "--";
                 string[] tags = hot_tags.Select(x => x.desc).ToArray();
                 releaseDate = menu_v2[0].value.ToString();
                 if (publishers[0] is string)
@@ -396,7 +396,10 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                 {
                     name += $" ({platf})";
                 }
-
+                if (positive_desc.Contains("好评率"))
+                {
+                    steam = positive_desc.Replace("Steam好评率：", "");
+                }
                 if (is_free)
                 {
                     nowPrice = "免费";
@@ -408,9 +411,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                         nowPrice = "￥" + price.current;
                         discount = price.discount == 0 ? "" : $"-{price.discount}%";
                         lowest = price.lowest_price == 0 ? "￥" + price.current : "￥" + price.lowest_price.ToString();
-                        lowestArea = heybox_price == null ? "-" : minimum_price.name;
-                        lowestAreaPrice = heybox_price == null ? "-" : minimum_price.value;
-                        heyboxPrice = heybox_price == null ? "-" : $"￥{heybox_price.cost_coin / 1000}";
+                        lowestArea = heybox_price == null ? "--" : minimum_price.name;
+                        lowestAreaPrice = heybox_price == null ? "--" : minimum_price.value;
+                        heyboxPrice = heybox_price == null ? "--" : $"￥{heybox_price.cost_coin / 1000}";
                     }
                 }
                 #endregion
