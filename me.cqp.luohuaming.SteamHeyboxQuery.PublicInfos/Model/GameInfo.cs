@@ -354,14 +354,18 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     heyboxPrice = "--";
                 string[] tags = hot_tags.Select(x => x.desc).ToArray();
                 releaseDate = menu_v2[0].value.ToString();
-                if (publishers[0] is string)
+                if (publishers.Count > 0)
                 {
-                    publisher = publishers[0] as string;
+                    if(publishers[0] is string)
+                    {
+                        publisher = publishers[0] as string;
+                    }
+                    else
+                    {
+                        publisher = menu_v2[1].value.ToString();
+                    }
                 }
-                else
-                {
-                    publisher = menu_v2[1].value.ToString();
-                }
+                
                 if (user_num != null)
                 {
                     foreach (var item in user_num.game_data)
