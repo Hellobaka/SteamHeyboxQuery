@@ -2,7 +2,7 @@
 	"ret": 1,
 	"apiver": 9,
 	"name": "Steam价格查询",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"version_id": 1,
 	"author": "落花茗",
 	"description": "使用小黑盒公开API查询游戏价格",
