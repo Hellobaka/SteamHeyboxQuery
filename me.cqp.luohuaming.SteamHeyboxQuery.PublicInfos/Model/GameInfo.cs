@@ -633,7 +633,8 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
             }
             public static Color GetSteamColor(string steam)
             {
-                int score = Convert.ToInt32(steam.Replace("%", ""));
+                if (int.TryParse(steam.Replace("%", ""), out int score) is false)
+                    return Color.White;
                 if (score < 30)
                     return Color.FromArgb(163, 76, 37);
                 else if (score < 70)
