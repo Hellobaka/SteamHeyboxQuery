@@ -42,9 +42,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
             public int discount { get; set; }
             public string deadline_date { get; set; }
             public string lowest_price_raw { get; set; }
-            public int lowest_price { get; set; }
-            public int new_lowest { get; set; }
-            public int lowest_discount { get; set; }
+            public float lowest_price { get; set; }
+            public float new_lowest { get; set; }
+            public float lowest_discount { get; set; }
         }
 
         public class Price2
