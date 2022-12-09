@@ -445,7 +445,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
                     g.FillRectangle(new SolidBrush(Color.FromArgb(27, 40, 56)), new Rectangle(new Point(0, 0), bitmap.Size));
-                    Font font = new Font("微软雅黑", 24);
+                    Font font = new Font("微软雅黑", 30, GraphicsUnit.Pixel);
                     font = AdjustFontSize(g, name, font, bitmap.Width - 2 * padding);
 
                     Point point = new Point(padding, padding);
@@ -485,11 +485,10 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     }
                     else
                     {
-                        g.DrawString("暂无图片", new Font("微软雅黑", 30), Brushes.White, new Point(10, 120));
+                        g.DrawString("暂无图片", new Font("微软雅黑", 36, GraphicsUnit.Pixel), Brushes.White, new Point(10, 120));
                     }
-
-                    Font smallFont = new Font("微软雅黑", 12);
-                    font = new Font("微软雅黑", 14);
+                    Font smallFont = new Font("微软雅黑", 16, GraphicsUnit.Pixel);
+                    font = new Font("微软雅黑", 20, GraphicsUnit.Pixel);
 
                     point = new Point(400, 58);
                     g.DrawString("开发商：", smallFont, Brushes.White, point);
@@ -498,7 +497,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     g.DrawString(publisher, font, Brushes.White, point);
 
                     point = new Point(400, 110);
-                    font = new Font("微软雅黑", 14);
+                    font = new Font("微软雅黑", 20, GraphicsUnit.Pixel);
                     g.DrawString("发行日期：", smallFont, Brushes.White, point);
                     point = new Point(400, 134);
                     font = AdjustFontSize(g, releaseDate, font, 180);
@@ -507,13 +506,13 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     point = new Point(padding, 247);
                     foreach (var tag in tags)
                     {
-                        font = new Font("微软雅黑", 10);
+                        font = new Font("微软雅黑", 13, GraphicsUnit.Pixel);
                         var tmp = g.MeasureString(tag, font);
                         g.DrawImage(DrawRoundRect((int)tmp.Width + 6, (int)tmp.Height + 4, 2, new SolidBrush(Color.FromArgb(33, 57, 74))), point);
                         g.DrawString(tag, font, new SolidBrush(Color.FromArgb(103, 193, 245)), new Point(point.X + 4, point.Y + 2));
                         point = new Point(point.X + (int)tmp.Width + 6 + 4, point.Y);
                     }
-                    font = new Font("微软雅黑", 28);
+                    font = new Font("微软雅黑", 32, GraphicsUnit.Pixel);
                     int containerWidth = 100, containerHeight = 100;
                     Bitmap container = DrawRoundRect(containerWidth, containerHeight, 5, new LinearGradientBrush(new Point(0, 0), new Point(60, 120), Color.FromArgb(44, 60, 73), Color.FromArgb(88, 103, 117)));
 
@@ -526,7 +525,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, online, font, containerWidth);
                     var stringSize = g.MeasureString(online, font);
                     g.DrawString(online, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     DrawRank(onlineRank, g, startX, containerPostionY, containerWidth);
 
                     startX += gap;
@@ -535,7 +534,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, month, font, containerWidth);
                     stringSize = g.MeasureString(month, font);
                     g.DrawString(month, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     DrawRank(monthRank, g, startX, containerPostionY, containerWidth);
 
                     startX += gap;
@@ -544,7 +543,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, avg, font, containerWidth);
                     stringSize = g.MeasureString(avg, font);
                     g.DrawString(avg, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     DrawRank(avgRank, g, startX, containerPostionY, containerWidth);
 
 
@@ -554,7 +553,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, heyboxPlayer, font, containerWidth);
                     stringSize = g.MeasureString(heyboxPlayer, font);
                     g.DrawString(heyboxPlayer, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     DrawRank(heyboxPlayerRank, g, startX, containerPostionY, containerWidth);
 
                     startX += gap;
@@ -563,7 +562,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, steam, font, containerWidth);
                     stringSize = g.MeasureString(steam, font);
                     g.DrawString(steam, font, new SolidBrush(GetSteamColor(steam)), new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
 
                     containerPostionY = 380;
                     startX = padding;
@@ -572,7 +571,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, nowPrice, font, containerWidth);
                     stringSize = g.MeasureString(nowPrice, font);
                     g.DrawString(nowPrice, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     DrawRank(discount, g, startX, containerPostionY, containerWidth);
 
                     startX += gap;
@@ -583,7 +582,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     g.DrawString(lowest, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
 
                     startX += gap;
-                    font = new Font("微软雅黑", 20);
+                    font = new Font("微软雅黑", 26, GraphicsUnit.Pixel);
                     g.DrawImage(container, new Point(startX, containerPostionY));
                     g.DrawString("最低价", smallFont, Brushes.White, new Point(startX + (containerWidth - (int)g.MeasureString(new string('啊', 3), smallFont).Width) / 2, containerPostionY + 70));
                     font = AdjustFontSize(g, lowestArea, font, containerWidth);
@@ -592,7 +591,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     font = AdjustFontSize(g, lowestAreaPrice, font, containerWidth);
                     stringSize = g.MeasureString(lowestAreaPrice, font);
                     g.DrawString(lowestAreaPrice, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 + 5));
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
 
                     startX += gap;
                     g.DrawImage(container, new Point(startX, containerPostionY));
@@ -602,7 +601,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                     g.DrawString(heyboxPrice, font, Brushes.White, new Point(startX + (containerWidth - (int)stringSize.Width) / 2, containerPostionY + (containerHeight - (int)stringSize.Height) / 2 - 5));
 
                     startX += gap;
-                    font = new Font("微软雅黑", 30);
+                    font = new Font("微软雅黑", 36, GraphicsUnit.Pixel);
                     g.DrawImage(container, new Point(startX, containerPostionY));
                     g.DrawString("小黑盒评分", smallFont, Brushes.White, new Point(startX + (containerWidth - (int)g.MeasureString(new string('啊', 5), smallFont).Width) / 2, containerPostionY + 70));
                     font = AdjustFontSize(g, heybox, font, containerWidth);
@@ -615,7 +614,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
             {
                 if (string.IsNullOrWhiteSpace(rank) is false)
                 {
-                    Font font = new Font("微软雅黑", 10);
+                    Font font = new Font("微软雅黑", 16, GraphicsUnit.Pixel);
                     g.DrawString(rank, font, Brushes.White, new Point(containerX + containerWidth - (int)g.MeasureString(rank, font).Width - 2, containerY + 2));
                 }
             }
