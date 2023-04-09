@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using me.cqp.luohuaming.SteamHeyboxQuery.Sdk.Cqp.Model;
 using me.cqp.luohuaming.SteamHeyboxQuery.Tool.IniConfig;
@@ -42,7 +43,9 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos
         public static Dictionary<string, int> SteamIdCache { get; set; } = new Dictionary<string, int>();
         public static string DownloadString(string url) {
             using(var client = new System.Net.WebClient()) {
-                return client.DownloadString(url);
+                string json = client.DownloadString(url);
+                json = Regex.Replace(json, "heybox:\\/\\/.*\"", "\"");
+                return json;
             }
         }
     }
