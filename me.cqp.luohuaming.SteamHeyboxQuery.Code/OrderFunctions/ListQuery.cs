@@ -1,19 +1,18 @@
-﻿using System;
+﻿using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos;
+using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model;
+using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi;
+using me.cqp.luohuaming.SteamHeyboxQuery.Sdk.Cqp.EventArgs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using me.cqp.luohuaming.SteamHeyboxQuery.Sdk.Cqp.EventArgs;
-using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos;
-using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model;
-using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi;
 
 namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
 {
     public class ListQuery : IOrderModel
     {
         public bool ImplementFlag { get; set; } = true;
-        
+
         public string GetOrderStr() => "#steam列表查询";
 
         public bool Judge(string destStr) => destStr.ToLower().Replace("＃", "#").StartsWith(GetOrderStr());//这里判断是否能触发指令
@@ -48,7 +47,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
             };
             string targetName = e.Message.Text.ToLower().Replace(GetOrderStr(), "").Trim();
             sendText = CallListQuery(targetName, sendText);
-            
+
             result.SendObject.Add(sendText);
             return result;
         }
@@ -64,17 +63,24 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
                 sb.AppendLine($"共有{list.Count}个结果");
                 for (int i = 0; i < Math.Min(10, list.Count); i++)
                 {
-                    sb.AppendLine($"{i+1}. {list[i].info.name}({list[i].info.platforms[0]}) - {list[i].info.steam_appid}");
+                    try
+                    {
+                        sb.AppendLine($"{i + 1}. {list[i].info.name}({list[i].info.platforms.FirstOrDefault()}) - {list[i].info.steam_appid}");
+                    }
+                    catch
+                    {
+                        sb.AppendLine($"{i + 1}. ");
+                    }
                 }
                 sendText.MsgToSend.Add(sb.ToString());
             }
             else
             {
-                MainSave.CQLog.Info("游戏查询",$"查询失败，{targetName} 未找到关键词词条");
+                MainSave.CQLog.Info("游戏查询", $"查询失败，{targetName} 未找到关键词词条");
                 sendText.MsgToSend.Add("未找到相关关键词的游戏Σ(っ°Д°;)っ");
             }
 
             return sendText;
-        } 
+        }
     }
 }

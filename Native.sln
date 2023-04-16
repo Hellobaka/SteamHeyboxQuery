@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "me.cqp.luohuaming.SteamHeyb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos", "me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos\me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.csproj", "{9CA41650-71F2-4F0C-9A80-9CDB5A7D593C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "me.cqp.luohuaming.SteamHeyboxQuery.PublicInfosTests", "me.cqp.luohuaming.SteamHeyboxQuery.PublicInfosTests\me.cqp.luohuaming.SteamHeyboxQuery.PublicInfosTests.csproj", "{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,14 @@ Global
 		{9CA41650-71F2-4F0C-9A80-9CDB5A7D593C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CA41650-71F2-4F0C-9A80-9CDB5A7D593C}.Release|x86.ActiveCfg = Release|Any CPU
 		{9CA41650-71F2-4F0C-9A80-9CDB5A7D593C}.Release|x86.Build.0 = Release|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Debug|Any CPU.Build.0 = Debug|x86
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Debug|x86.Build.0 = Debug|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Release|x86.ActiveCfg = Release|Any CPU
+		{3FE6E116-A1AB-461E-A9F6-F1E789E3E847}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

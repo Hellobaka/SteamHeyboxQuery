@@ -13,8 +13,8 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos
         public static List<IOrderModel> Instances { get; set; } = new List<IOrderModel>();
         public static CQLog CQLog { get; set; }
         public static CQApi CQApi { get; set; }
-        public static string AppDirectory { get; set; }
-        public static string ImageDirectory { get; set; }
+        public static string AppDirectory { get; set; } = "";
+        public static string ImageDirectory { get; set; } = "";
 
         static IniConfig configMain;
         public static IniConfig ConfigMain

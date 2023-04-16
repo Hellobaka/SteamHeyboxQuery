@@ -400,7 +400,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model
                 {
                     name += $" ({platf})";
                 }
-                if (positive_desc.Contains("好评率"))
+                if (positive_desc != null && positive_desc.Contains("好评率"))
                 {
                     steam = positive_desc.Replace("Steam好评率：", "");
                 }
