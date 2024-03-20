@@ -64,7 +64,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.App.Export
 			// 反射获取 AppData 实例	
 			Type appDataType = typeof (AppData);	
 			// 注册一个 CQApi 实例	
-			AppInfo appInfo = new AppInfo ("me.cqp.luohuaming.SteamHeyboxQuery", 1, 9, "Steam价格查询", "1.0.7", 1, "落花茗", "使用小黑盒公开API查询游戏价格", authCode);	
+			AppInfo appInfo = new AppInfo ("me.cqp.luohuaming.SteamHeyboxQuery", 1, 9, "Steam价格查询", "1.0.8", 1, "落花茗", "使用小黑盒公开API查询游戏价格", authCode);	
 			appDataType.GetRuntimeProperty ("CQApi").GetSetMethod (true).Invoke (null, new object[] { new CQApi (appInfo) });	
 			AppData.UnityContainer.RegisterInstance<CQApi> ("me.cqp.luohuaming.SteamHeyboxQuery", AppData.CQApi);	
 			// 向容器注册一个 CQLog 实例	
