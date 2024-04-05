@@ -11,7 +11,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
 {
     public class ListQuery : IOrderModel
     {
-        public bool ImplementFlag { get; set; } = true;
+        public bool ImplementFlag { get; set; } = false;
 
         public string GetOrderStr() => "#steam列表查询";
 

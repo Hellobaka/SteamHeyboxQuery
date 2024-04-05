@@ -70,7 +70,11 @@
     <Compile Include="MainSave.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="Model\ApiResult.cs" />
+    <Compile Include="WebApi\ErBing\GameIDDetail.cs" />
+    <Compile Include="WebApi\ErBing\NameSearch.cs" />
     <Compile Include="WebApi\GetGameInfo.cs" />
+    <Compile Include="WebApi\Phoenix\GameIDDetail.cs" />
+    <Compile Include="WebApi\Phoenix\NameSearch.cs" />
     <Compile Include="WebApi\SearchGame.cs" />
     <Compile Include="Model\GameInfo.cs" />
     <Compile Include="Model\SearchResult.cs" />

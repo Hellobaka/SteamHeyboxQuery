@@ -8,6 +8,7 @@ using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos;
 using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.Model;
 using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi;
 using System.IO;
+using me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi.ErBing;
 
 namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
 {
@@ -69,20 +70,31 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.Code.OrderFunctions
 
         public static SendText CallSearch(string targetName, SendText sendText)
         {
-            SearchGame searchgame = new SearchGame(targetName);
-            var searchResult = searchgame.Get();
-            if (searchResult.IsSuccess)
+            var phoenixId = new NameSearch(targetName).Get();
+            if (!phoenixId.IsSuccess)
             {
-                int appID = (searchResult.Data as List<SearchResult.Item>)[0].info.steam_appid;
-                CommonHelper.SteamIdCache.Add(targetName, appID);
-                MainSave.CQLog.Info("游戏查询",$"缓存成功，{targetName} -> steamID: {appID}");
-                sendText = CallGameInfo(appID, sendText);
-            }
-            else
-            {
-                MainSave.CQLog.Info("游戏查询",$"查询失败，{targetName} 未找到关键词词条");
+                MainSave.CQLog.Info("游戏查询", $"查询失败，{targetName} 未找到关键词词条：获取主ID");
                 sendText.MsgToSend.Add("未找到相关关键词的游戏Σ(っ°Д°;)っ");
+                return sendText;
             }
+            var steamId = new GameIDDetail(phoenixId.Data.ToString()).GetSteamId();
+            if (!steamId.IsSuccess)
+            {
+                MainSave.CQLog.Info("游戏查询", $"查询失败，{targetName} 未找到关键词词条：获取SteamID");
+                sendText.MsgToSend.Add("未找到相关关键词的游戏Σ(っ°Д°;)っ");
+                return sendText;
+            }
+
+            int appID = (int)steamId.Data;
+            if (appID == 0)
+            {
+                MainSave.CQLog.Info("游戏查询", $"查询失败，{targetName} 未找到关键词词条：转换SteamID");
+                sendText.MsgToSend.Add("未找到相关关键词的游戏Σ(っ°Д°;)っ");
+                return sendText;
+            }
+            CommonHelper.SteamIdCache.Add(targetName, appID);
+            MainSave.CQLog.Info("游戏查询", $"缓存成功，{targetName} -> steamID: {appID}");
+            sendText = CallGameInfo(appID, sendText);
 
             return sendText;
         }

@@ -16,6 +16,7 @@ namespace me.cqp.luohuaming.SteamHeyboxQuery.PublicInfos.WebApi
         {
             string url = BaseURL.Replace("{{appid}}", appid.ToString());
             string json = CommonHelper.DownloadString(url);
+            MainSave.CQLog.Debug("HeyboxJson", json);
             return JsonConvert.DeserializeObject<GameInfo>(json);
         }
         public ApiResult Get()
